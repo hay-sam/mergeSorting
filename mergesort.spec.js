@@ -23,25 +23,36 @@ describe('Merge function', function(){
 });
 
 describe('MergeSort function', function(){
-  // it('returns if the array is empty', function(){
-  //   // test the merging algorithm
-  //   expect(mergeSort([])).toEqual([])
+  it('returns if the array is empty', function(){
+    // test the merging algorithm
+    expect(mergeSort([])).toEqual([])
 
-  // });
-  // it('returns the array if its only one item', function(){
-  //   // test the merging algorithm
-  //   expect(mergeSort([2])).toEqual([2])
+  });
+  it('returns the array if its only one item', function(){
+    // test the merging algorithm
+    expect(mergeSort([2])).toEqual([2])
 
 
-  //});
+  });
   it('returns a sorted array of any length', function(){
 
-    // expect(mergeSort([2,42,19,7,5])).toEqual([2,5,7,19,42,])
-    // // test the merging algorithm
-    // expect(mergeSort([2,42,19,7,24,100])).toEqual([2,7,19,24,42,100])
-    // expect(mergeSort([2,42,19,7,24,100,1])).toEqual([1,2,7,19,24,42,100])
-    // expect(mergeSort([2,42,19,7,24,100,1])).toEqual([1,2,7,19,24,42,100])
+    expect(mergeSort([2,42,19,7,5])).toEqual([2,5,7,19,42,])
+    // test the merging algorithm
+    expect(mergeSort([2,42,19,7,24,100])).toEqual([2,7,19,24,42,100])
+    expect(mergeSort([2,42,19,7,24,100,1])).toEqual([1,2,7,19,24,42,100])
+    expect(mergeSort([2,42,19,7,24,100,1])).toEqual([1,2,7,19,24,42,100])
     expect(mergeSort([900,2,42,19,1000,7,3,24,100,1,223])).toEqual([1,2,3,7,19,24,42,100,223,900,1000])
+
+
+  });
+
+  it('returns sorted array with custom sort function', function(){
+    // test the merging algorithm
+    expect(mergeSort([{ age: 4 }, { age: 8 }, { age: 2 }, { age: 9 }], function comparator (a, b) {
+      if (a.age < b.age) return -1; // returning `-1` means "a goes before b"
+      if (a.age > b.age) return 1;  // returning  `1` means "b goes before a"
+      return 0; // returning 0 means "a and b are equivalent"
+    })).toEqual([{ age: 2 }, { age: 4 }, { age: 8 }, { age: 9 }])
 
 
   });

@@ -11,13 +11,15 @@ function split(wholeArray) {
   return [firstHalf, secondHalf];
 }
 
-function merge(arr1, arr2){
+function merge(arr1, arr2, callBack = null){
   let mergedArr = [];
   while((arr1.length + arr2.length) > 0){
       if(arr1.length === 0){
         mergedArr.push(arr2.shift())
       }else if (arr2.length === 0){
         mergedArr.push(arr1.shift())
+      }else if (callBack){
+        (callBack(arr1[0],arr2[0]) <= 0) ? mergedArr.push(arr1.shift()):mergedArr.push(arr2.shift())
       }else{
         (arr1[0] <= arr2[0])? mergedArr.push(arr1.shift()):mergedArr.push(arr2.shift())
       }
@@ -28,7 +30,7 @@ function merge(arr1, arr2){
 }
 
 
-function mergeSort(array) {
+function mergeSort(array, callBack = null) {
   //console.log("im the whole array",array)
   if(array.length === 0){
     return array;
@@ -47,7 +49,7 @@ function mergeSort(array) {
     // console.log("second half pre recursive",secondHalf)
     secondHalf = mergeSort(secondHalf)
     // console.log("second half post recursive",secondHalf)
-    return merge(firstHalf,secondHalf)
+    return merge(firstHalf,secondHalf, callBack)
   }
   /* your code here */
 
